@@ -13,13 +13,13 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public String reverse(String string) {
-		char[] reversed = new char[string.length()];
-		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
-			reversed[j] = string.charAt(i);
-		}
-		return new String(reversed);
-	}
+	public String reverse(String string) { //done
+        char[] reversed = new char[string.length()];
+        for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
+            reversed[j] = string.charAt(i);
+        }
+        return new String(reversed);
+    }
 
 	/**
 	 * 2. Convert a phrase to its acronym. Techies love their TLA (Three Letter
@@ -34,6 +34,11 @@ public class EvaluationService {
 		return null;
 	}
 
+	private Object indexOf() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * 3. Determine if a triangle is equilateral, isosceles, or scalene. An
 	 * equilateral triangle has all three sides the same length. An isosceles
@@ -43,7 +48,7 @@ public class EvaluationService {
 	 * different lengths.
 	 *
 	 */
-	static class Triangle {
+	static class Triangle { //done
 		private double sideOne;
 		private double sideTwo;
 		private double sideThree;
@@ -84,17 +89,23 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideTwo && sideTwo == sideThree && sideOne == sideThree) {
+				return true;
+			} else
+				return false;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			if (sideOne == sideThree || sideTwo == sideThree) {
+				return true;
+			} else 	
+				return false;
 		}
 
-		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+		public boolean isScalene() {			
+			if (sideOne != sideThree && sideThree != sideTwo) {
+				return true;
+			} else
 			return false;
 		}
 
@@ -113,12 +124,64 @@ public class EvaluationService {
 	 * 3 + 2*1 + 2*3 + 2 + 1 = 3 + 2 + 6 + 3 = 5 + 9 = 14
 	 * 
 	 * @param string
+	 * @return 
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		String lowercase = string.toLowerCase();
+		int points = 0; 
+		for(int i=0; i < lowercase.length(); i++) { 
+				char letter = lowercase.charAt(i);
+				switch(letter) { 
+				case 'a':
+				case 'e':
+				case 'i':
+				case 'o':
+				case 'u':
+				case 'l':
+				case 'n':
+				case 'r':
+				case 's':
+				case 't':
+					points += 1;
+					break;
+				case 'd':
+				case 'g':
+					points += 2;
+					break;
+				case 'b':
+				case 'c':
+				case 'm':
+				case 'p':
+					points += 3;
+					break;
+				case 'f':
+				case 'h':
+				case 'v':
+				case 'w':
+				case 'y':
+					points += 4;
+					break;
+				case 'k':
+					points += 5;
+					break;
+				case 'j':
+				case 'x':
+					points += 8;
+					break;
+				case 'q':
+				case 'z':
+					points += 10;
+					break;
+		}
 	}
+		return points;	
+			
+}
+		
+	
+	
 
 	/**
 	 * 5. Clean up user-entered phone numbers so that they can be sent SMS messages.
@@ -150,10 +213,15 @@ public class EvaluationService {
 	 * 
 	 * Note: As this exercise only deals with telephone numbers used in
 	 * NANP-countries, only 1 is considered a valid country code.
+	 * @return 
 	 */
-	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+	public String cleanPhoneNumber(String string) { 
+		
+			if (string.indexOf("a") != -1 || string.indexOf("@") != -1 || string.length() == 12) {
+				throw new IllegalArgumentException();
+			} else
+			return string.replaceAll("[^0-9]", "");
+			
 	}
 
 	/**
@@ -247,7 +315,17 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		if (string.indexOf("a") == 0 || string.indexOf("e") == 0 || string.indexOf("i") == 0 || string.indexOf("o") == 0 || string.indexOf("u") == 0) {
+			return string + "ay";
+		} else if (string.indexOf("th") == 0 || string.indexOf("qu") == 0 || string.indexOf("ch") == 0 || 
+				string.indexOf("tr") == 0 || string.indexOf("cl") == 0) {
+			return string.substring(2,string.length()) + string.substring(0,2) + "ay";
+		} else if (string.indexOf("sch") == 0) {
+			return string.substring(3,string.length()) + string.substring(0,3) + "ay";
+		} else 
+			return string.substring(1,string.length()) + string.substring(0,1) + "ay";
+		
 	}
 
 	/**
