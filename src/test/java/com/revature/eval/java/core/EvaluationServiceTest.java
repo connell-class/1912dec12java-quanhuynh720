@@ -180,7 +180,7 @@ public class EvaluationServiceTest {
 	@Test
 	public void invalidWhenMoreThan11Digits() {
 		expectedException.expect(IllegalArgumentException.class);
-		evaluationService.cleanPhoneNumber("321234567890");
+		evaluationService.cleanPhoneNumber("3212345678901");
 	}
 
 	@Test
