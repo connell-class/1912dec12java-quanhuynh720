@@ -1,5 +1,7 @@
 package rev.challenge.model;
 
+import rev.challenge.Driver;
+
 public class Weapon {
 	private String name;
 	private int damage;
@@ -25,13 +27,20 @@ public class Weapon {
 		damage=5;
 	}
 	
-	public static Weapon makeWeapon(String w) {
-		switch(w.toLowerCase()) {
-		case "Charizard":
+	public static Weapon makeWeapon() {
+		System.out.println("Choose your Pokemon: type in Charmander, Squirtle, or Bulbasaur");
+		//Driver.scan.nextLine();
+		switch(Driver.scan.next()) {
+		case "Charmander":
 			return new Weapon("Charizard", 50);
-		default:
-			return new Weapon();
+		case "Squirtle":
+			return new Weapon("Squirtle", 50);
+		case "Bulbasaur":
+			return new Weapon("Bulbasaur", 50);
+		//default:
+			//return new Weapon();
 		}
+		return null;
 	}
 	
 }

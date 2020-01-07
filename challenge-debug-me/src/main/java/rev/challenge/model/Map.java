@@ -134,7 +134,7 @@ public class Map {
 	}
 	private void win() {
 		if(complete==rooms) {
-			System.out.println("you captured all the Pokemons");
+			System.out.println("You captured all the Pokemons");
 			printScore();
 			Leaderboard.load();
 			Leaderboard.add(new User(player.getName(), score));
